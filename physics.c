@@ -17,11 +17,22 @@ int colision_check(){
     return ret_val;
 }
 
+int colision_check_wall(){
+    int ret_val;
+    // ANDs the four rows where the piece is currently at
+    bit_and_matrix(SQUARESIZE, &piece_mask[piece_row], &play_area[piece_row], result);
+    // checks if any of the four rows contains a 1
+    for (int i = 0; i < SQUARESIZE; i++){
+        ret_val |= result[i];
+    }
+    return ret_val;
+}
 
 int consolidate_rows(){
     // add each of the 4 rows where the piece is to the play area
     bit_or_matrix(SQUARESIZE, &piece_mask[piece_row], &play_area[piece_row], &play_area[piece_row]);
 }
+
 
 
 
@@ -39,7 +50,6 @@ int clear_rows(){
     }
     return points;
 }
-
 void tetris_god_senpai(){
     piece_row = 4;
     piece_col = 5;
@@ -47,8 +57,7 @@ void tetris_god_senpai(){
     change_piece();
     reset_mask();
     apply_mask();
-}
-
+}						 
 
 int result[SQUARESIZE] =
 {
