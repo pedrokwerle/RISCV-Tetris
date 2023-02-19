@@ -17,20 +17,20 @@ int colision_check(){
     return ret_val;
 }
 
-/* TODO: doesn't work
+
 int consolidate_rows(){
     // add each of the 4 rows where the piece is to the play area
     bit_or_matrix(SQUARESIZE, &piece_mask[piece_row], &play_area[piece_row], &play_area[piece_row]);
 }
 
-*/
-/*TODO: doesn't work
+
+
 int clear_rows(){
     int points = 0;
-    for (int i = piece_row; i < SQUARESIZE - 1; i++){ // check each of the 4 rows where the piece is
-        if (play_area[i] == 0b111111111111){
+    for (int i = HEIGHT-2; i > 4; i--){ // check each of the 4 rows where the piece is
+        if (play_area[i] == 4095){ // 4095 = column of all 1s
             points++;
-            // this wil break when the piece is off screen @@@@@@@@@@@@@
+            // this will break when the piece is off screen @@@@@@@@@@@@@
             for (int j = i; j > 4; j--){
                 play_area[j] = play_area[j-1];
             }
@@ -39,7 +39,16 @@ int clear_rows(){
     }
     return points;
 }
-*/
+
+void tetris_god_senpai(){
+    piece_row = 4;
+    piece_col = 5;
+    piece_index = (piece_index + 7)%18;
+    change_piece();
+    reset_mask();
+    apply_mask();
+}
+
 
 int result[SQUARESIZE] =
 {

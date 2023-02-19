@@ -22,22 +22,25 @@
 
 int main(){
     initialize();
+    int points = 0;
     for (int j = 0; j < HEIGHT; j++){
         paint_row(play_area[j], j);
     }
-    int colision = 0;
-    while (colision < 1){
-        mv_piece_d();
-        for (int j = piece_row-1; j < piece_row + SQUARESIZE; j++){
-            paint_row(piece_mask[j] | play_area[j], j);
+    while(1){
+        int colision = 0;
+        while (colision < 1){
+            mv_piece_d();
+            for (int j = piece_row-1; j < piece_row + SQUARESIZE; j++){
+                paint_row(piece_mask[j] | play_area[j], j);
+            }
+            colision = colision_check();
         }
-        colision = colision_check();
-    }
-    // consolidate rows:
-    bit_or_matrix(SQUARESIZE, &piece_mask[piece_row], &play_area[piece_row], result);
-    for (int j = piece_row; j < piece_row + SQUARESIZE; j++){
-        play_area[j] = result[j-piece_row];
-    }
-    // clear rows:
+        consolidate_rows();
+        points = clear_rows();
 
+        for (int j = 0; j < HEIGHT-1; j++){
+            paint_row(play_area[j], j);
+        }
+        tetris_god_senpai();
+    }
 }

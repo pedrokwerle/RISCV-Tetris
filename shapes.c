@@ -1,10 +1,10 @@
 #include "shapes.h"
 #include "matrix.h"
 
-// copy the contents of the piece matrix to the position in the mask indicated by piece_row and piece_col
-void apply_mask(int piece[SQUARESIZE]){
+// copy the contents of the current_piecem to the position in the mask indicated by piece_row and piece_col
+void apply_mask(){
     for (int i = piece_row; i < piece_row + SQUARESIZE; i++){
-        piece_mask[i] = piece[i-piece_row]; // mask row equal current piece row
+        piece_mask[i] = current_piecem[i-piece_row]; // mask row equal current piece row
         piece_mask[i] = (piece_mask[i] << (12 - SQUARESIZE - piece_col)); // shift the mask back to its original position
     }
 }
@@ -16,13 +16,25 @@ void reset_mask(){
 }
 
 void initialize(){
-    piece_index = 15;
-    piece_row = 19;
+    piece_index = 0;
+    piece_row = 16;
     piece_col = 6;
+    // set the play area to its initial state
+    play_area[0] = 0b111111111111;
+    play_area[1] = 0b111111111111;
+    play_area[2] = 0b111111111111;
+    play_area[3] = 0b111111111111;
+    for (int i = 4; i < HEIGHT-1; i++){
+        play_area[i] = 0b100000000001;
+    }
+    play_area[HEIGHT-4] = 0b111111100111;
+    play_area[HEIGHT-3] = 0b111111110111;
+    play_area[HEIGHT-2] = 0b111111100111;
+    play_area[HEIGHT-1] = 0b111111111111;
     for (int j = 0; j < SQUARESIZE; j++){
         current_piecem[j] = pieces[piece_index][j];
     }
-    apply_mask(current_piecem);
+    apply_mask();
 }
 
 void change_piece(){
@@ -168,31 +180,31 @@ int pieces[TETRIS][SQUARESIZE]=
 
 int play_area[HEIGHT] =
 {
-    0b111111111111,
-    0b111111111111,
-    0b111111111111,
-    0b111111111111,
-    0b100000000001,
-    0b100000000001,
-    0b100000000001,
-    0b100000000001,
-    0b100000000001,
-    0b100000000001,
-    0b100000000001,
-    0b100000000001,
-    0b100000000001,
-    0b100000000001,
-    0b100000000001,
-    0b100000000001,
-    0b100000000001,
-    0b100000000001,
-    0b100000000001,
-    0b100000000001,
-    0b100000000001,
-    0b100000000001,
-    0b100000000001,
-    0b111111111111,
-    0b111111111111,
+    0b000000000000,
+    0b000000000000,
+    0b000000000000,
+    0b000000000000,
+    0b000000000000,
+    0b000000000000,
+    0b000000000000,
+    0b000000000000,
+    0b000000000000,
+    0b000000000000,
+    0b000000000000,
+    0b000000000000,
+    0b000000000000,
+    0b000000000000,
+    0b000000000000,
+    0b000000000000,
+    0b000000000000,
+    0b000000000000,
+    0b000000000000,
+    0b000000000000,
+    0b000000000000,
+    0b000000000000,
+    0b000000000000,
+    0b000000000000,
+    0b000000000000,
 };
 
 int piece_mask[HEIGHT] =

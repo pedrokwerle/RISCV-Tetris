@@ -30,7 +30,7 @@ void r_piece_cw(){
     piece_index = rotational_vector[piece_index];
     change_piece();
     reset_mask();
-    apply_mask(current_piecem);
+    apply_mask();
 }
 
 int rotational_vector[TETRIS] =
