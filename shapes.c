@@ -17,7 +17,7 @@ void reset_mask(){
 
 void initialize(){
     piece_index = 0;
-    piece_row = 16;
+    piece_row = 13;
     piece_col = 6;
     // set the play area to its initial state
     play_area[0] = 0b111111111111;
@@ -27,9 +27,10 @@ void initialize(){
     for (int i = 4; i < HEIGHT-1; i++){
         play_area[i] = 0b100000000001;
     }
-    play_area[HEIGHT-4] = 0b111111100111;
+	play_area[HEIGHT-5] = 0b111111110111;
+    play_area[HEIGHT-4] = 0b111111110111;
     play_area[HEIGHT-3] = 0b111111110111;
-    play_area[HEIGHT-2] = 0b111111100111;
+    play_area[HEIGHT-2] = 0b111111110111;
     play_area[HEIGHT-1] = 0b111111111111;
     for (int j = 0; j < SQUARESIZE; j++){
         current_piecem[j] = pieces[piece_index][j];
