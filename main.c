@@ -18,6 +18,7 @@
 #include "shapes.h"
 #include "physics.h"
 #include "random.h"
+#include "matrix.h"
 
 int main(){
     initialize();
@@ -26,20 +27,17 @@ int main(){
     }
     int colision = 0;
     while (colision < 1){
+        mv_piece_d();
         for (int j = piece_row-1; j < piece_row + SQUARESIZE; j++){
             paint_row(piece_mask[j] | play_area[j], j);
         }
-        mv_piece_u();
-        r_piece_cw();
         colision = colision_check();
     }
-
-    mv_piece_u();
-    consolidate_rows();
-    //clear_rows();
-
-    for (int j = 0; j < HEIGHT; j++){
-        paint_row(play_area[j], j);
+    // consolidate rows:
+    bit_or_matrix(SQUARESIZE, &piece_mask[piece_row], &play_area[piece_row], result);
+    for (int j = piece_row; j < piece_row + SQUARESIZE; j++){
+        play_area[j] = result[j-piece_row];
     }
+    // clear rows:
 
 }

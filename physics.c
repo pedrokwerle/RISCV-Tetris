@@ -6,25 +6,25 @@
 // checks for colision between the falling piece and the blocks in the playing area
 int colision_check(){
     int ret_val;
+    mv_piece_d(); // move piece down to check for future colisions
     // ANDs the four rows where the piece is currently at
     bit_and_matrix(SQUARESIZE, &piece_mask[piece_row], &play_area[piece_row], result);
     // checks if any of the four rows contains a 1
     for (int i = 0; i < SQUARESIZE; i++){
         ret_val |= result[i];
     }
+    mv_piece_u(); // move piece up to its original position
     return ret_val;
 }
 
-// TODO: doesn't work
+/* TODO: doesn't work
 int consolidate_rows(){
     // add each of the 4 rows where the piece is to the play area
     bit_or_matrix(SQUARESIZE, &piece_mask[piece_row], &play_area[piece_row], &play_area[piece_row]);
-    /*for (int i = piece_row; i < SQUARESIZE; i++){
-        bit_or_matrix(SQUARESIZE, &piece_mask[piece_row], &play_area[piece_row], &play_area[piece_row]);
-    }*/
 }
 
-// TODO: doesn't work
+*/
+/*TODO: doesn't work
 int clear_rows(){
     int points = 0;
     for (int i = piece_row; i < SQUARESIZE - 1; i++){ // check each of the 4 rows where the piece is
@@ -39,6 +39,7 @@ int clear_rows(){
     }
     return points;
 }
+*/
 
 int result[SQUARESIZE] =
 {

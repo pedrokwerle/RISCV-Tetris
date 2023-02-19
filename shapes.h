@@ -5,10 +5,10 @@
 #define HEIGHT (25)
 
 extern int pieces[TETRIS][SQUARESIZE];
+extern int piece_mask[HEIGHT];
 extern int play_area[HEIGHT];
 extern int piece_row;
 extern int piece_col;
-extern int piece_mask[HEIGHT];
 extern int current_piecem[SQUARESIZE];
 extern int piece_index;
 void change_piece();

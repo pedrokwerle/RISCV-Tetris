@@ -17,7 +17,7 @@ void reset_mask(){
 
 void initialize(){
     piece_index = 15;
-    piece_row = 16;
+    piece_row = 19;
     piece_col = 6;
     for (int j = 0; j < SQUARESIZE; j++){
         current_piecem[j] = pieces[piece_index][j];
@@ -140,9 +140,9 @@ int pieces[TETRIS][SQUARESIZE]=
 
     // cross variations 15-18
     {
-        0b0000,
         0b0100,
         0b1110,
+        0b0000,
         0b0000,
     },
     {
