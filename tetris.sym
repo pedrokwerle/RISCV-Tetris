@@ -1,3 +1,5 @@
+1000fffc B __stack_init
+00400000 T _start
 00400104 T abs
 00400308 T apply_mask
 00400434 T bit_and_matrix
@@ -26,6 +28,8 @@
 00400150 T printint
 00400120 T println
 00400130 T printstr
+004006a8 T r_piece_ccw
+00400678 T r_piece_cw
 004002dc T random
 004001d8 T readchar
 00400238 T readint
@@ -35,9 +39,5 @@
 004002ec t roll
 004004e4 T rotate_ccw
 00400468 T rotate_cw
-004006a8 T r_piece_ccw
-00400678 T r_piece_cw
 00400818 d seed
 0040029c T showpic
-1000fffc B __stack_init
-00400000 T _start

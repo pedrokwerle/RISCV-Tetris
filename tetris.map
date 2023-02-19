@@ -202,26 +202,26 @@ OUTPUT(tetris elf32-littleriscv)
  .debug_aranges
                 0x0000000000000120       0x20 physics.o
 
-.debug_str      0x0000000000000000      0x29b
- .debug_str     0x0000000000000000       0x6f crt0.o
- .debug_str     0x000000000000006f       0x9f main.o
-                                         0xf9 (size before relaxing)
- .debug_str     0x000000000000010e       0x5b lib.o
-                                         0xf6 (size before relaxing)
- .debug_str     0x0000000000000169        0xa showpic.o
-                                         0x72 (size before relaxing)
- .debug_str     0x0000000000000173        0x9 random.o
-                                         0x71 (size before relaxing)
- .debug_str     0x000000000000017c       0x3e shapes.o
+.debug_str      0x0000000000000000      0x2c9
+ .debug_str     0x0000000000000000       0x43 crt0.o
+ .debug_str     0x0000000000000043       0x9f main.o
+                                         0xcd (size before relaxing)
+ .debug_str     0x00000000000000e2       0x5b lib.o
+                                         0xca (size before relaxing)
+ .debug_str     0x000000000000013d        0xa showpic.o
+                                         0x46 (size before relaxing)
+ .debug_str     0x0000000000000147        0x9 random.o
+                                         0x45 (size before relaxing)
+ .debug_str     0x0000000000000150       0x98 shapes.o
                                         0x104 (size before relaxing)
- .debug_str     0x00000000000001ba       0x12 display.o
-                                         0xa5 (size before relaxing)
- .debug_str     0x00000000000001cc       0x57 matrix.o
-                                         0xf9 (size before relaxing)
- .debug_str     0x0000000000000223       0x43 movement.o
-                                        0x134 (size before relaxing)
- .debug_str     0x0000000000000266       0x35 physics.o
-                                        0x11d (size before relaxing)
+ .debug_str     0x00000000000001e8       0x12 display.o
+                                         0x79 (size before relaxing)
+ .debug_str     0x00000000000001fa       0x57 matrix.o
+                                         0xcd (size before relaxing)
+ .debug_str     0x0000000000000251       0x43 movement.o
+                                        0x108 (size before relaxing)
+ .debug_str     0x0000000000000294       0x35 physics.o
+                                         0xf1 (size before relaxing)
 
 .debug_loc      0x0000000000000000      0x5e1
  .debug_loc     0x0000000000000000       0x51 main.o

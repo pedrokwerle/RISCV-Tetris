@@ -91,8 +91,8 @@ int main(){
   4000c4:	00378793          	addi	a5,a5,3
   4000c8:	fc87dce3          	bge	a5,s0,4000a0 <main+0x84>
         }
-        mv_piece_u();
-  4000cc:	56c000ef          	jal	ra,400638 <mv_piece_u>
+        mv_piece_d();
+  4000cc:	52c000ef          	jal	ra,4005f8 <mv_piece_d>
         colision = colision_check();
   4000d0:	608000ef          	jal	ra,4006d8 <colision_check>
     while (colision < 1){
@@ -456,18 +456,11 @@ roll:
   400304:	00008067          	ret
 
 00400308 <apply_mask>:
-#include "matrix.h"
-
-void apply_mask(int piece[SQUARESIZE]){
-    for (int i = piece_row; i < piece_row + SQUARESIZE; i++){
-        piece_mask[i] = piece[i-piece_row]; // mask row equal current piece row
-        piece_mask[i] = (piece_mask[i] << (12 - SQUARESIZE - piece_col)); // shift the mask back to its original position
   400308:	100007b7          	lui	a5,0x10000
   40030c:	0847a783          	lw	a5,132(a5) # 10000084 <piece_col>
   400310:	00800613          	li	a2,8
   400314:	40f60633          	sub	a2,a2,a5
   400318:	00050713          	mv	a4,a0
-    for (int i = piece_row; i < piece_row + SQUARESIZE; i++){
   40031c:	100007b7          	lui	a5,0x10000
   400320:	0887a783          	lw	a5,136(a5) # 10000088 <piece_row>
   400324:	00279693          	slli	a3,a5,0x2
@@ -475,22 +468,15 @@ void apply_mask(int piece[SQUARESIZE]){
   40032c:	00078793          	mv	a5,a5
   400330:	00d787b3          	add	a5,a5,a3
   400334:	01050513          	addi	a0,a0,16
-        piece_mask[i] = (piece_mask[i] << (12 - SQUARESIZE - piece_col)); // shift the mask back to its original position
   400338:	00072683          	lw	a3,0(a4)
   40033c:	00c696b3          	sll	a3,a3,a2
   400340:	00d7a023          	sw	a3,0(a5) # 10000000 <piece_mask>
-    for (int i = piece_row; i < piece_row + SQUARESIZE; i++){
   400344:	00470713          	addi	a4,a4,4
   400348:	00478793          	addi	a5,a5,4
   40034c:	fea716e3          	bne	a4,a0,400338 <apply_mask+0x30>
-    }
-}
   400350:	00008067          	ret
 
 00400354 <reset_mask>:
-
-void reset_mask(){
-    for (int i = piece_row; i < piece_row + SQUARESIZE; i++){
   400354:	100007b7          	lui	a5,0x10000
   400358:	0887a683          	lw	a3,136(a5) # 10000088 <piece_row>
   40035c:	00269693          	slli	a3,a3,0x2
@@ -499,31 +485,21 @@ void reset_mask(){
   400368:	00d707b3          	add	a5,a4,a3
   40036c:	01070713          	addi	a4,a4,16 # 10000010 <piece_mask+0x10>
   400370:	00d706b3          	add	a3,a4,a3
-        piece_mask[i] = piece_mask[i] >> 12;
   400374:	0007a703          	lw	a4,0(a5)
   400378:	40c75713          	srai	a4,a4,0xc
   40037c:	00e7a023          	sw	a4,0(a5)
-    for (int i = piece_row; i < piece_row + SQUARESIZE; i++){
   400380:	00478793          	addi	a5,a5,4
   400384:	fed798e3          	bne	a5,a3,400374 <reset_mask+0x20>
-    }
-}
   400388:	00008067          	ret
 
 0040038c <initialize>:
-
-void initialize(){
   40038c:	ff010113          	addi	sp,sp,-16
   400390:	00112623          	sw	ra,12(sp)
-    piece_row = 18;
   400394:	100007b7          	lui	a5,0x10000
   400398:	01200713          	li	a4,18
   40039c:	08e7a423          	sw	a4,136(a5) # 10000088 <piece_row>
-    piece_col = 0;
   4003a0:	100007b7          	lui	a5,0x10000
   4003a4:	0807a223          	sw	zero,132(a5) # 10000084 <piece_col>
-    for (int j = 0; j < SQUARESIZE; j++){
-        current_piece[j] = pieces[3][j];
   4003a8:	10000537          	lui	a0,0x10000
   4003ac:	00050513          	mv	a0,a0
   4003b0:	004017b7          	lui	a5,0x401
@@ -536,11 +512,8 @@ void initialize(){
   4003cc:	06e52623          	sw	a4,108(a0)
   4003d0:	03c7a783          	lw	a5,60(a5)
   4003d4:	06f52823          	sw	a5,112(a0)
-    }
-    apply_mask(current_piece);
   4003d8:	06450513          	addi	a0,a0,100
   4003dc:	f2dff0ef          	jal	ra,400308 <apply_mask>
-}
   4003e0:	00c12083          	lw	ra,12(sp)
   4003e4:	01010113          	addi	sp,sp,16
   4003e8:	00008067          	ret
