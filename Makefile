@@ -19,11 +19,11 @@ EXECUTABLE = tetris
 
 # list of all *object* files that must be produced and linked together into the executable.
 # for *each* object file in this list there must be a corresponding C (.c) or Assembly (.S or .s) source file
-OBJECT_FILES = crt0.o main.o lib.o showpic.o random.o shapes.o display.o matrix.o movement.o physics.o
+OBJECT_FILES = crt0.o main.o lib.o showpic.o random.o shapes.o display.o matrix.o movement.o physics.o buttons.o
 
 # list of all header files (.h) and, possibly, other data files *included* into the source code files
 # via .include or #include directives
-HEADER_FILES = lib.h random.h matrix.h display.h shapes.h movement.h physics.h 
+HEADER_FILES = lib.h random.h matrix.h display.h shapes.h movement.h physics.h buttons.h
 
 # ------------------------------------
 
