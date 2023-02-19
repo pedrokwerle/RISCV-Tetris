@@ -19,6 +19,7 @@
 #include "physics.h"
 #include "random.h"
 #include "matrix.h"
+#include "buttons.h"
 
 int main(){
     initialize();
@@ -29,7 +30,19 @@ int main(){
     while(1){
         int colision = 0;
         while (colision < 1){
+            if(pollLeftFlag()){
+            mv_piece_l();
+            }
+            else if(pollRightFlag()){
+            mv_piece_r();
+            }
+            else if(pollRotFlag()){
+            r_piece_cw();
+            }
+            else{
             mv_piece_d();
+            }
+            lowerFlags();
             for (int j = piece_row-1; j < piece_row + SQUARESIZE; j++){
                 paint_row(piece_mask[j] | play_area[j], j);
             }

@@ -2,6 +2,7 @@
 #include "movement.h"
 #include "shapes.h"
 #include "matrix.h"
+#include "buttons.h"
 
 // checks for colision between the falling piece and the blocks in the playing area
 int colision_check(){
