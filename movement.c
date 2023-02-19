@@ -27,13 +27,14 @@ void mv_piece_u(){
     }
     piece_row -= 1;
 }
-void r_piece_cw(int piece[SQUARESIZE]){
-    rotate_cw(piece);
+void r_piece_cw(){
+    piece_index = rotational_vector[piece_index];
+    change_piece();
     reset_mask();
-    apply_mask(piece);
+    apply_mask(current_piecem);
 }
-void r_piece_ccw(int piece[SQUARESIZE]){
-    rotate_ccw(piece);
-    reset_mask();
-    apply_mask(piece);
-}
+
+int rotational_vector[TETRIS] =
+{
+    1,0,3,4,5,2,7,8,9,6,10,12,11,14,13,16,17,18,15,
+};

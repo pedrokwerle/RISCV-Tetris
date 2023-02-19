@@ -28,10 +28,10 @@ int consolidate_rows(){
 int clear_rows(){
     int points = 0;
     for (int i = piece_row; i < SQUARESIZE - 1; i++){ // check each of the 4 rows where the piece is
-        if (play_area[i] == 0b000000000000){
+        if (play_area[i] == 0b111111111111){
             points++;
             // this wil break when the piece is off screen @@@@@@@@@@@@@
-            for (int j = i; j > 4; j++){
+            for (int j = i; j > 4; j--){
                 play_area[j] = play_area[j-1];
             }
             play_area[4] = 0b100000000001;

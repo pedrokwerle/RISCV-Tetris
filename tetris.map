@@ -14,65 +14,64 @@ Linker script and memory map
  .init          0x0000000000400000       0x1c crt0.o
                 0x0000000000400000                _start
 
-.text           0x000000000040001c      0x7fc
+.text           0x000000000040001c      0x770
  *(.text)
  .text          0x000000000040001c        0x0 crt0.o
- .text          0x000000000040001c       0xe8 main.o
+ .text          0x000000000040001c      0x120 main.o
                 0x000000000040001c                main
- .text          0x0000000000400104      0x198 lib.o
-                0x0000000000400104                abs
-                0x0000000000400114                printchar
-                0x0000000000400120                println
-                0x0000000000400130                printstr
-                0x0000000000400150                printint
-                0x00000000004001cc                pollkbd
-                0x00000000004001d8                readchar
-                0x00000000004001e4                readstr
-                0x0000000000400238                readint
- .text          0x000000000040029c       0x24 showpic.o
-                0x000000000040029c                showpic
- .text          0x00000000004002c0       0x48 random.o
-                0x00000000004002c0                initseed
-                0x00000000004002dc                random
- .text          0x0000000000400308       0xe4 shapes.o
-                0x0000000000400308                apply_mask
-                0x0000000000400354                reset_mask
-                0x000000000040038c                initialize
- .text          0x00000000004003ec       0x14 display.o
-                0x00000000004003ec                paint_row
- .text          0x0000000000400400      0x15c matrix.o
-                0x0000000000400400                bit_or_matrix
-                0x0000000000400434                bit_and_matrix
-                0x0000000000400468                rotate_cw
-                0x00000000004004e4                rotate_ccw
- .text          0x000000000040055c      0x17c movement.o
-                0x000000000040055c                mv_piece_l
-                0x00000000004005a4                mv_piece_r
-                0x00000000004005f8                mv_piece_d
-                0x0000000000400638                mv_piece_u
-                0x0000000000400678                r_piece_cw
-                0x00000000004006a8                r_piece_ccw
- .text          0x00000000004006d8      0x140 physics.o
-                0x00000000004006d8                colision_check
-                0x0000000000400748                consolidate_rows
-                0x000000000040078c                clear_rows
+ .text          0x000000000040013c      0x198 lib.o
+                0x000000000040013c                abs
+                0x000000000040014c                printchar
+                0x0000000000400158                println
+                0x0000000000400168                printstr
+                0x0000000000400188                printint
+                0x0000000000400204                pollkbd
+                0x0000000000400210                readchar
+                0x000000000040021c                readstr
+                0x0000000000400270                readint
+ .text          0x00000000004002d4       0x24 showpic.o
+                0x00000000004002d4                showpic
+ .text          0x00000000004002f8       0x48 random.o
+                0x00000000004002f8                initseed
+                0x0000000000400314                random
+ .text          0x0000000000400340      0x138 shapes.o
+                0x0000000000400340                apply_mask
+                0x000000000040038c                reset_mask
+                0x00000000004003c4                initialize
+                0x0000000000400434                change_piece
+ .text          0x0000000000400478       0x14 display.o
+                0x0000000000400478                paint_row
+ .text          0x000000000040048c       0x68 matrix.o
+                0x000000000040048c                bit_or_matrix
+                0x00000000004004c0                bit_and_matrix
+ .text          0x00000000004004f4      0x164 movement.o
+                0x00000000004004f4                mv_piece_l
+                0x000000000040053c                mv_piece_r
+                0x0000000000400590                mv_piece_d
+                0x00000000004005d0                mv_piece_u
+                0x0000000000400610                r_piece_cw
+ .text          0x0000000000400658      0x134 physics.o
+                0x0000000000400658                colision_check
+                0x00000000004006c8                consolidate_rows
+                0x000000000040070c                clear_rows
 
-.rela.dyn       0x0000000000400818        0x0
- .rela.init     0x0000000000400818        0x0 crt0.o
+.rela.dyn       0x000000000040078c        0x0
+ .rela.init     0x000000000040078c        0x0 crt0.o
 
-.data           0x0000000000400818       0xd8
- .data          0x0000000000400818        0x0 crt0.o
- .data          0x0000000000400818        0x0 main.o
- .data          0x0000000000400818        0x0 lib.o
- .data          0x0000000000400818        0x0 showpic.o
- .data          0x0000000000400818        0x4 random.o
- .data          0x000000000040081c       0xd4 shapes.o
-                0x000000000040081c                pieces
-                0x000000000040088c                play_area
- .data          0x00000000004008f0        0x0 display.o
- .data          0x00000000004008f0        0x0 matrix.o
- .data          0x00000000004008f0        0x0 movement.o
- .data          0x00000000004008f0        0x0 physics.o
+.data           0x000000000040078c      0x1e4
+ .data          0x000000000040078c        0x0 crt0.o
+ .data          0x000000000040078c        0x0 main.o
+ .data          0x000000000040078c        0x0 lib.o
+ .data          0x000000000040078c        0x0 showpic.o
+ .data          0x000000000040078c        0x4 random.o
+ .data          0x0000000000400790      0x194 shapes.o
+                0x0000000000400790                pieces
+                0x00000000004008c0                play_area
+ .data          0x0000000000400924        0x0 display.o
+ .data          0x0000000000400924        0x0 matrix.o
+ .data          0x0000000000400924       0x4c movement.o
+                0x0000000000400924                rotational_vector
+ .data          0x0000000000400970        0x0 physics.o
 
 .srodata
  *(.srodata)
@@ -86,7 +85,7 @@ Linker script and memory map
  .bss           0x0000000010000000        0x0 random.o
  .bss           0x0000000010000000       0x74 shapes.o
                 0x0000000010000000                piece_mask
-                0x0000000010000064                current_piece
+                0x0000000010000064                current_piecem
  .bss           0x0000000010000074        0x0 display.o
  .bss           0x0000000010000074        0x0 matrix.o
  .bss           0x0000000010000074        0x0 movement.o
@@ -106,10 +105,11 @@ LOAD movement.o
 LOAD physics.o
 OUTPUT(tetris elf32-littleriscv)
 
-.sbss           0x0000000010000084        0x8
- .sbss          0x0000000010000084        0x8 shapes.o
+.sbss           0x0000000010000084        0xc
+ .sbss          0x0000000010000084        0xc shapes.o
                 0x0000000010000084                piece_col
                 0x0000000010000088                piece_row
+                0x000000001000008c                piece_index
 
 .riscv.attributes
                 0x0000000000000000       0x21
@@ -144,31 +144,31 @@ OUTPUT(tetris elf32-littleriscv)
  .comment       0x000000000000000f       0x10 movement.o
  .comment       0x000000000000000f       0x10 physics.o
 
-.debug_line     0x0000000000000000     0x13b3
+.debug_line     0x0000000000000000     0x1245
  .debug_line    0x0000000000000000       0x55 crt0.o
- .debug_line    0x0000000000000055      0x18e main.o
- .debug_line    0x00000000000001e3      0x4f2 lib.o
- .debug_line    0x00000000000006d5       0x6a showpic.o
- .debug_line    0x000000000000073f       0x8d random.o
- .debug_line    0x00000000000007cc      0x238 shapes.o
- .debug_line    0x0000000000000a04       0x63 display.o
- .debug_line    0x0000000000000a67      0x3e2 matrix.o
- .debug_line    0x0000000000000e49      0x2d0 movement.o
- .debug_line    0x0000000000001119      0x29a physics.o
+ .debug_line    0x0000000000000055      0x210 main.o
+ .debug_line    0x0000000000000265      0x4f2 lib.o
+ .debug_line    0x0000000000000757       0x6a showpic.o
+ .debug_line    0x00000000000007c1       0x8d random.o
+ .debug_line    0x000000000000084e      0x316 shapes.o
+ .debug_line    0x0000000000000b64       0x63 display.o
+ .debug_line    0x0000000000000bc7      0x12c matrix.o
+ .debug_line    0x0000000000000cf3      0x2ce movement.o
+ .debug_line    0x0000000000000fc1      0x284 physics.o
 
-.debug_info     0x0000000000000000      0xc0c
+.debug_info     0x0000000000000000      0xb73
  .debug_info    0x0000000000000000       0x26 crt0.o
- .debug_info    0x0000000000000026      0x132 main.o
- .debug_info    0x0000000000000158      0x2b7 lib.o
- .debug_info    0x000000000000040f       0x26 showpic.o
- .debug_info    0x0000000000000435       0x26 random.o
- .debug_info    0x000000000000045b      0x1c0 shapes.o
- .debug_info    0x000000000000061b       0x62 display.o
- .debug_info    0x000000000000067d      0x214 matrix.o
- .debug_info    0x0000000000000891      0x1fe movement.o
- .debug_info    0x0000000000000a8f      0x17d physics.o
+ .debug_info    0x0000000000000026      0x18d main.o
+ .debug_info    0x00000000000001b3      0x2b7 lib.o
+ .debug_info    0x000000000000046a       0x26 showpic.o
+ .debug_info    0x0000000000000490       0x26 random.o
+ .debug_info    0x00000000000004b6      0x209 shapes.o
+ .debug_info    0x00000000000006bf       0x62 display.o
+ .debug_info    0x0000000000000721      0x10d matrix.o
+ .debug_info    0x000000000000082e      0x1c8 movement.o
+ .debug_info    0x00000000000009f6      0x17d physics.o
 
-.debug_abbrev   0x0000000000000000      0x72e
+.debug_abbrev   0x0000000000000000      0x683
  .debug_abbrev  0x0000000000000000       0x14 crt0.o
  .debug_abbrev  0x0000000000000014       0xd6 main.o
  .debug_abbrev  0x00000000000000ea      0x1fb lib.o
@@ -176,9 +176,9 @@ OUTPUT(tetris elf32-littleriscv)
  .debug_abbrev  0x00000000000002f9       0x14 random.o
  .debug_abbrev  0x000000000000030d       0xea shapes.o
  .debug_abbrev  0x00000000000003f7       0x5d display.o
- .debug_abbrev  0x0000000000000454       0xe9 matrix.o
- .debug_abbrev  0x000000000000053d      0x10a movement.o
- .debug_abbrev  0x0000000000000647       0xe7 physics.o
+ .debug_abbrev  0x0000000000000454       0x89 matrix.o
+ .debug_abbrev  0x00000000000004dd       0xbf movement.o
+ .debug_abbrev  0x000000000000059c       0xe7 physics.o
 
 .debug_aranges  0x0000000000000000      0x140
  .debug_aranges
@@ -202,6 +202,7 @@ OUTPUT(tetris elf32-littleriscv)
  .debug_aranges
                 0x0000000000000120       0x20 physics.o
 
+<<<<<<< HEAD
 .debug_str      0x0000000000000000      0x2c9
  .debug_str     0x0000000000000000       0x43 crt0.o
  .debug_str     0x0000000000000043       0x9f main.o
@@ -222,27 +223,48 @@ OUTPUT(tetris elf32-littleriscv)
                                         0x108 (size before relaxing)
  .debug_str     0x0000000000000294       0x35 physics.o
                                          0xf1 (size before relaxing)
+=======
+.debug_str      0x0000000000000000      0x2a1
+ .debug_str     0x0000000000000000       0x6f crt0.o
+ .debug_str     0x000000000000006f       0xbb main.o
+                                        0x115 (size before relaxing)
+ .debug_str     0x000000000000012a       0x5b lib.o
+                                         0xf6 (size before relaxing)
+ .debug_str     0x0000000000000185        0xa showpic.o
+                                         0x72 (size before relaxing)
+ .debug_str     0x000000000000018f        0x9 random.o
+                                         0x71 (size before relaxing)
+ .debug_str     0x0000000000000198       0x58 shapes.o
+                                        0x11e (size before relaxing)
+ .debug_str     0x00000000000001f0       0x12 display.o
+                                         0xa5 (size before relaxing)
+ .debug_str     0x0000000000000202       0x3d matrix.o
+                                         0xcb (size before relaxing)
+ .debug_str     0x000000000000023f       0x3e movement.o
+                                        0x147 (size before relaxing)
+ .debug_str     0x000000000000027d       0x24 physics.o
+                                        0x11d (size before relaxing)
+>>>>>>> 9695830 (fixed piece rotation)
 
-.debug_loc      0x0000000000000000      0x5e1
- .debug_loc     0x0000000000000000       0x51 main.o
- .debug_loc     0x0000000000000051      0x1eb lib.o
- .debug_loc     0x000000000000023c       0x92 shapes.o
- .debug_loc     0x00000000000002ce       0x21 display.o
- .debug_loc     0x00000000000002ef      0x1b8 matrix.o
- .debug_loc     0x00000000000004a7       0x93 movement.o
- .debug_loc     0x000000000000053a       0xa7 physics.o
+.debug_loc      0x0000000000000000      0x571
+ .debug_loc     0x0000000000000000       0x70 main.o
+ .debug_loc     0x0000000000000070      0x1eb lib.o
+ .debug_loc     0x000000000000025b       0xd6 shapes.o
+ .debug_loc     0x0000000000000331       0x21 display.o
+ .debug_loc     0x0000000000000352      0x130 matrix.o
+ .debug_loc     0x0000000000000482       0x3b movement.o
+ .debug_loc     0x00000000000004bd       0xb4 physics.o
 
-.debug_ranges   0x0000000000000000      0x108
- .debug_ranges  0x0000000000000000       0x18 main.o
- .debug_ranges  0x0000000000000018       0x60 lib.o
- .debug_ranges  0x0000000000000078       0x48 matrix.o
- .debug_ranges  0x00000000000000c0       0x48 physics.o
+.debug_ranges   0x0000000000000000       0xe0
+ .debug_ranges  0x0000000000000000       0x30 main.o
+ .debug_ranges  0x0000000000000030       0x60 lib.o
+ .debug_ranges  0x0000000000000090       0x50 physics.o
 
-.debug_frame    0x0000000000000000      0x2a8
- .debug_frame   0x0000000000000000       0x48 main.o
- .debug_frame   0x0000000000000048       0xa8 lib.o
- .debug_frame   0x00000000000000f0       0x4c shapes.o
- .debug_frame   0x000000000000013c       0x20 display.o
- .debug_frame   0x000000000000015c       0x60 matrix.o
- .debug_frame   0x00000000000001bc       0x90 movement.o
- .debug_frame   0x000000000000024c       0x5c physics.o
+.debug_frame    0x0000000000000000      0x268
+ .debug_frame   0x0000000000000000       0x4c main.o
+ .debug_frame   0x000000000000004c       0xa8 lib.o
+ .debug_frame   0x00000000000000f4       0x5c shapes.o
+ .debug_frame   0x0000000000000150       0x20 display.o
+ .debug_frame   0x0000000000000170       0x30 matrix.o
+ .debug_frame   0x00000000000001a0       0x6c movement.o
+ .debug_frame   0x000000000000020c       0x5c physics.o

@@ -29,16 +29,17 @@ int main(){
         for (int j = piece_row-1; j < piece_row + SQUARESIZE; j++){
             paint_row(piece_mask[j] | play_area[j], j);
         }
-        mv_piece_d();
+        mv_piece_u();
+        r_piece_cw();
         colision = colision_check();
     }
-    /*
+
     mv_piece_u();
     consolidate_rows();
-    clear_rows();
+    //clear_rows();
 
     for (int j = 0; j < HEIGHT; j++){
         paint_row(play_area[j], j);
     }
-    */
+
 }
