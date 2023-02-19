@@ -10,7 +10,6 @@ void mv_piece_l(){
     }
 	
 	if (colision_check_wall()) {
-		printint(1);
 		for (int i = piece_row; i < piece_row + SQUARESIZE; i++){
 			piece_mask[i] = piece_mask[i] >> 1;
 		}

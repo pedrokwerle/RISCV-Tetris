@@ -2,7 +2,6 @@
 #include "movement.h"
 #include "shapes.h"
 #include "matrix.h"
-#include "buttons.h"
 
 // checks for colision between the falling piece and the blocks in the playing area
 int colision_check(){
@@ -39,9 +38,10 @@ int consolidate_rows(){
 
 int clear_rows(){
     int points = 0;
-    for (int i = HEIGHT-2; i > 4; i--){ // check each of the 4 rows where the piece is
+    for (int i = piece_row; i < HEIGHT-1; i++){ // check each of the 4 rows where the piece is
         if (play_area[i] == 4095){ // 4095 = column of all 1s
-            points++;
+			if (!points){points = 1;}
+            points = points*2;
             // this will break when the piece is off screen @@@@@@@@@@@@@
             for (int j = i; j > 4; j--){
                 play_area[j] = play_area[j-1];

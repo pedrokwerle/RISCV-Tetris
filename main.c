@@ -50,6 +50,8 @@ int main(){
         }
         consolidate_rows();
         points = clear_rows();
+		printint(points);
+		println();
 
         for (int j = 0; j < HEIGHT-1; j++){
             paint_row(play_area[j], j);
