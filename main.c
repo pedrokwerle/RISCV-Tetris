@@ -14,22 +14,16 @@
 
 #include "lib.h"
 #include "display.h"
-#include "shapes.h"
 #include "movement.h"
+#include "shapes.h"
 #include "physics.h"
 #include "random.h"
 
 int main(){
-    int current_piece[SQUARESIZE];
-    for (int j = 0; j < SQUARESIZE; j++){
-        current_piece[j] = pieces[3][j];
-    }
-    piece_row = 14;
-    piece_col = 4;
+    initialize();
     for (int j = 0; j < HEIGHT; j++){
         paint_row(play_area[j], j);
     }
-    apply_mask(current_piece);
     int colision = 0;
     while (colision < 1){
         for (int j = piece_row-1; j < piece_row + SQUARESIZE; j++){
@@ -38,6 +32,7 @@ int main(){
         mv_piece_d();
         colision = colision_check();
     }
+    /*
     mv_piece_u();
     consolidate_rows();
     clear_rows();
@@ -45,4 +40,5 @@ int main(){
     for (int j = 0; j < HEIGHT; j++){
         paint_row(play_area[j], j);
     }
+    */
 }

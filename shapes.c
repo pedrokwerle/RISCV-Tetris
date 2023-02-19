@@ -1,6 +1,7 @@
 #include "shapes.h"
 #include "matrix.h"
 
+// copy the contents of the piece matrix to the position in the mask indicated by piece_row and piece_col
 void apply_mask(int piece[SQUARESIZE]){
     for (int i = piece_row; i < piece_row + SQUARESIZE; i++){
         piece_mask[i] = piece[i-piece_row]; // mask row equal current piece row
@@ -13,6 +14,19 @@ void reset_mask(){
         piece_mask[i] = piece_mask[i] >> 12;
     }
 }
+
+void initialize(){
+    piece_row = 16;
+    piece_col = 6;
+    for (int j = 0; j < SQUARESIZE; j++){
+        current_piece[j] = pieces[3][j];
+    }
+    apply_mask(current_piece);
+}
+
+int piece_row = 0;
+int piece_col = 0;
+int current_piece[SQUARESIZE];
 
 int pieces[TETRIS][SQUARESIZE]=
 {
@@ -90,11 +104,9 @@ int play_area[HEIGHT] =
     0b111111111111,
 };
 
-int piece_row = 0;
-int piece_col = 0;
-
 int piece_mask[HEIGHT] =
 {
+    0b000000000000,
     0b000000000000,
     0b000000000000,
     0b000000000000,

@@ -2,13 +2,13 @@
 #include "matrix.h"
 
 void bit_or_matrix(int size, int matrix1[size], int matrix2[size], int* result){
-    for (int i = 0; i < size - 1; i++) {
+    for (int i = 0; i < size; i++) {
         result[i] = matrix1[i] | matrix2[i];
     }
 }
 
 void bit_and_matrix(int size, int matrix1[size], int matrix2[size], int* result){
-    for (int i = 0; i < size - 1; i++) {
+    for (int i = 0; i < size; i++) {
         result[i] = matrix1[i] & matrix2[i];
     }
 }

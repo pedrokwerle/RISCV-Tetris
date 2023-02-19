@@ -13,6 +13,7 @@ void mv_piece_r(){
         piece_mask[i] = piece_mask[i] >> 1;
     }
     piece_col += 1;
+    piece_row += 1;
 }
 void mv_piece_d(){
     for (int i = piece_row + SQUARESIZE; i > piece_row - 1; i--){
@@ -21,7 +22,7 @@ void mv_piece_d(){
     piece_row += 1;
 }
 void mv_piece_u(){
-    for (int i = piece_row - 1; i > piece_row + SQUARESIZE - 1; i--){
+    for (int i = piece_row - 1; i < piece_row + SQUARESIZE; i++){
         piece_mask[i] = piece_mask[i+1];
     }
     piece_row -= 1;
