@@ -908,11 +908,11 @@ int colision_check(){
 
 0040073c <consolidate_rows>:
 
-int consolidate_rows(){
+// TODO: doesn't work
   40073c:	ff010113          	addi	sp,sp,-16
   400740:	00112623          	sw	ra,12(sp)
+int consolidate_rows(){
     // add each of the 4 rows where the piece is to the play area
-    bit_or_matrix(SQUARESIZE, &piece_mask[piece_row], &play_area[piece_row], &play_area[piece_row]);
   400744:	100007b7          	lui	a5,0x10000
   400748:	0787a783          	lw	a5,120(a5) # 10000078 <piece_row>
   40074c:	00279793          	slli	a5,a5,0x2
@@ -925,19 +925,19 @@ int consolidate_rows(){
   400768:	00f585b3          	add	a1,a1,a5
   40076c:	00400513          	li	a0,4
   400770:	cadff0ef          	jal	ra,40041c <bit_or_matrix>
+    bit_or_matrix(SQUARESIZE, &piece_mask[piece_row], &play_area[piece_row], &play_area[piece_row]);
     /*for (int i = piece_row; i < SQUARESIZE; i++){
         bit_or_matrix(SQUARESIZE, &piece_mask[piece_row], &play_area[piece_row], &play_area[piece_row]);
     }*/
-}
   400774:	00c12083          	lw	ra,12(sp)
   400778:	01010113          	addi	sp,sp,16
   40077c:	00008067          	ret
 
 00400780 <clear_rows>:
+}
 
+// TODO: doesn't work
 int clear_rows(){
-    int points = 0;
-    for (int i = piece_row; i < SQUARESIZE - 1; i++){ // check each of the 4 rows where the piece is
   400780:	100007b7          	lui	a5,0x10000
   400784:	0787a603          	lw	a2,120(a5) # 10000078 <piece_row>
   400788:	00200793          	li	a5,2
@@ -946,51 +946,51 @@ int clear_rows(){
   400794:	004017b7          	lui	a5,0x401
   400798:	81078793          	addi	a5,a5,-2032 # 400810 <play_area>
   40079c:	00f585b3          	add	a1,a1,a5
-    int points = 0;
+// TODO: doesn't work
   4007a0:	00000513          	li	a0,0
+    int points = 0;
+    for (int i = piece_row; i < SQUARESIZE - 1; i++){ // check each of the 4 rows where the piece is
         if (play_area[i] == 0b000000000000){
             points++;
+  4007a4:	00400813          	li	a6,4
             // this wil break when the piece is off screen @@@@@@@@@@@@@
             for (int j = i; j > 4; j++){
-  4007a4:	00400813          	li	a6,4
                 play_area[j] = play_area[j-1];
-            }
-            play_area[4] = 0b100000000001;
   4007a8:	00401e37          	lui	t3,0x401
   4007ac:	810e0e13          	addi	t3,t3,-2032 # 400810 <play_area>
   4007b0:	00001337          	lui	t1,0x1
   4007b4:	80130313          	addi	t1,t1,-2047 # 801 <_start-0x3ff7ff>
-    for (int i = piece_row; i < SQUARESIZE - 1; i++){ // check each of the 4 rows where the piece is
+int clear_rows(){
   4007b8:	00300893          	li	a7,3
   4007bc:	0140006f          	j	4007d0 <clear_rows+0x50>
-            play_area[4] = 0b100000000001;
+                play_area[j] = play_area[j-1];
   4007c0:	006e2823          	sw	t1,16(t3)
-    for (int i = piece_row; i < SQUARESIZE - 1; i++){ // check each of the 4 rows where the piece is
+int clear_rows(){
   4007c4:	00160613          	addi	a2,a2,1
   4007c8:	00458593          	addi	a1,a1,4 # 10000004 <piece_mask+0x4>
   4007cc:	03160a63          	beq	a2,a7,400800 <clear_rows+0x80>
-        if (play_area[i] == 0b000000000000){
+    int points = 0;
   4007d0:	0005a783          	lw	a5,0(a1)
   4007d4:	fe0798e3          	bnez	a5,4007c4 <clear_rows+0x44>
-            points++;
+    for (int i = piece_row; i < SQUARESIZE - 1; i++){ // check each of the 4 rows where the piece is
   4007d8:	00150513          	addi	a0,a0,1
-            for (int j = i; j > 4; j++){
+            points++;
   4007dc:	fec852e3          	bge	a6,a2,4007c0 <clear_rows+0x40>
   4007e0:	00058793          	mv	a5,a1
   4007e4:	00060713          	mv	a4,a2
-                play_area[j] = play_area[j-1];
+            // this wil break when the piece is off screen @@@@@@@@@@@@@
   4007e8:	ffc7a683          	lw	a3,-4(a5)
   4007ec:	00d7a023          	sw	a3,0(a5)
-            for (int j = i; j > 4; j++){
+            points++;
   4007f0:	00170713          	addi	a4,a4,1
   4007f4:	00478793          	addi	a5,a5,4
   4007f8:	fee848e3          	blt	a6,a4,4007e8 <clear_rows+0x68>
   4007fc:	fc5ff06f          	j	4007c0 <clear_rows+0x40>
   400800:	00008067          	ret
-    int points = 0;
+// TODO: doesn't work
   400804:	00000513          	li	a0,0
+            }
+            play_area[4] = 0b100000000001;
         }
     }
-    return points;
-}
   400808:	00008067          	ret
