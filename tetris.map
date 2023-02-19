@@ -1,0 +1,247 @@
+
+Memory Configuration
+
+Name             Origin             Length             Attributes
+rom              0x0000000000400000 0x0000000000010000 xrl
+ram              0x0000000010000000 0x0000000000010000 w !l
+*default*        0x0000000000000000 0xffffffffffffffff
+
+Linker script and memory map
+
+
+.init           0x0000000000400000       0x1c
+ *(.init)
+ .init          0x0000000000400000       0x1c crt0.o
+                0x0000000000400000                _start
+
+.text           0x000000000040001c      0x7f0
+ *(.text)
+ .text          0x000000000040001c        0x0 crt0.o
+ .text          0x000000000040001c      0x164 main.o
+                0x000000000040001c                main
+ .text          0x0000000000400180      0x198 lib.o
+                0x0000000000400180                abs
+                0x0000000000400190                printchar
+                0x000000000040019c                println
+                0x00000000004001ac                printstr
+                0x00000000004001cc                printint
+                0x0000000000400248                pollkbd
+                0x0000000000400254                readchar
+                0x0000000000400260                readstr
+                0x00000000004002b4                readint
+ .text          0x0000000000400318       0x24 showpic.o
+                0x0000000000400318                showpic
+ .text          0x000000000040033c       0x48 random.o
+                0x000000000040033c                initseed
+                0x0000000000400358                random
+ .text          0x0000000000400384       0x84 shapes.o
+                0x0000000000400384                apply_mask
+                0x00000000004003d0                reset_mask
+ .text          0x0000000000400408       0x14 display.o
+                0x0000000000400408                paint_row
+ .text          0x000000000040041c      0x16c matrix.o
+                0x000000000040041c                bit_or_matrix
+                0x0000000000400458                bit_and_matrix
+                0x0000000000400494                rotate_cw
+                0x0000000000400510                rotate_ccw
+ .text          0x0000000000400588      0x144 movement.o
+                0x0000000000400588                mv_piece_l
+                0x00000000004005d0                mv_piece_r
+                0x0000000000400618                mv_piece_d
+                0x0000000000400658                mv_piece_u
+                0x000000000040066c                r_piece_cw
+                0x000000000040069c                r_piece_ccw
+ .text          0x00000000004006cc      0x140 physics.o
+                0x00000000004006cc                colision_check
+                0x000000000040073c                consolidate_rows
+                0x0000000000400780                clear_rows
+
+.rela.dyn       0x000000000040080c        0x0
+ .rela.init     0x000000000040080c        0x0 crt0.o
+
+.data           0x000000000040080c       0xd8
+ .data          0x000000000040080c        0x0 crt0.o
+ .data          0x000000000040080c        0x0 main.o
+ .data          0x000000000040080c        0x0 lib.o
+ .data          0x000000000040080c        0x0 showpic.o
+ .data          0x000000000040080c        0x4 random.o
+ .data          0x0000000000400810       0xd4 shapes.o
+                0x0000000000400810                play_area
+                0x0000000000400874                pieces
+ .data          0x00000000004008e4        0x0 display.o
+ .data          0x00000000004008e4        0x0 matrix.o
+ .data          0x00000000004008e4        0x0 movement.o
+ .data          0x00000000004008e4        0x0 physics.o
+
+.srodata
+ *(.srodata)
+
+.bss            0x0000000010000000       0x74
+ *(.bss)
+ .bss           0x0000000010000000        0x0 crt0.o
+ .bss           0x0000000010000000        0x0 main.o
+ .bss           0x0000000010000000        0x0 lib.o
+ .bss           0x0000000010000000        0x0 showpic.o
+ .bss           0x0000000010000000        0x0 random.o
+ .bss           0x0000000010000000       0x64 shapes.o
+                0x0000000010000000                piece_mask
+ .bss           0x0000000010000064        0x0 display.o
+ .bss           0x0000000010000064        0x0 matrix.o
+ .bss           0x0000000010000064        0x0 movement.o
+ .bss           0x0000000010000064       0x10 physics.o
+                0x0000000010000064                result
+ *(COMMON)
+                0x000000001000fffc                PROVIDE (__stack_init = ((ORIGIN (ram) + LENGTH (ram)) - 0x4))
+LOAD crt0.o
+LOAD main.o
+LOAD lib.o
+LOAD showpic.o
+LOAD random.o
+LOAD shapes.o
+LOAD display.o
+LOAD matrix.o
+LOAD movement.o
+LOAD physics.o
+OUTPUT(tetris elf32-littleriscv)
+
+.sbss           0x0000000010000074        0x8
+ .sbss          0x0000000010000074        0x8 shapes.o
+                0x0000000010000074                piece_col
+                0x0000000010000078                piece_row
+
+.riscv.attributes
+                0x0000000000000000       0x21
+ .riscv.attributes
+                0x0000000000000000       0x1f crt0.o
+ .riscv.attributes
+                0x000000000000001f       0x21 main.o
+ .riscv.attributes
+                0x0000000000000040       0x21 lib.o
+ .riscv.attributes
+                0x0000000000000061       0x1f showpic.o
+ .riscv.attributes
+                0x0000000000000080       0x1f random.o
+ .riscv.attributes
+                0x000000000000009f       0x21 shapes.o
+ .riscv.attributes
+                0x00000000000000c0       0x21 display.o
+ .riscv.attributes
+                0x00000000000000e1       0x21 matrix.o
+ .riscv.attributes
+                0x0000000000000102       0x21 movement.o
+ .riscv.attributes
+                0x0000000000000123       0x21 physics.o
+
+.comment        0x0000000000000000        0xf
+ .comment       0x0000000000000000        0xf main.o
+                                         0x10 (size before relaxing)
+ .comment       0x000000000000000f       0x10 lib.o
+ .comment       0x000000000000000f       0x10 shapes.o
+ .comment       0x000000000000000f       0x10 display.o
+ .comment       0x000000000000000f       0x10 matrix.o
+ .comment       0x000000000000000f       0x10 movement.o
+ .comment       0x000000000000000f       0x10 physics.o
+
+.debug_line     0x0000000000000000     0x1425
+ .debug_line    0x0000000000000000       0x55 crt0.o
+ .debug_line    0x0000000000000055      0x2f8 main.o
+ .debug_line    0x000000000000034d      0x4f2 lib.o
+ .debug_line    0x000000000000083f       0x6a showpic.o
+ .debug_line    0x00000000000008a9       0x8d random.o
+ .debug_line    0x0000000000000936      0x14a shapes.o
+ .debug_line    0x0000000000000a80       0x63 display.o
+ .debug_line    0x0000000000000ae3      0x42a matrix.o
+ .debug_line    0x0000000000000f0d      0x27e movement.o
+ .debug_line    0x000000000000118b      0x29a physics.o
+
+.debug_info     0x0000000000000000      0xc5f
+ .debug_info    0x0000000000000000       0x26 crt0.o
+ .debug_info    0x0000000000000026      0x20d main.o
+ .debug_info    0x0000000000000233      0x2b7 lib.o
+ .debug_info    0x00000000000004ea       0x26 showpic.o
+ .debug_info    0x0000000000000510       0x26 random.o
+ .debug_info    0x0000000000000536      0x150 shapes.o
+ .debug_info    0x0000000000000686       0x62 display.o
+ .debug_info    0x00000000000006e8      0x208 matrix.o
+ .debug_info    0x00000000000008f0      0x1f2 movement.o
+ .debug_info    0x0000000000000ae2      0x17d physics.o
+
+.debug_abbrev   0x0000000000000000      0x731
+ .debug_abbrev  0x0000000000000000       0x14 crt0.o
+ .debug_abbrev  0x0000000000000014       0xf4 main.o
+ .debug_abbrev  0x0000000000000108      0x1fb lib.o
+ .debug_abbrev  0x0000000000000303       0x14 showpic.o
+ .debug_abbrev  0x0000000000000317       0x14 random.o
+ .debug_abbrev  0x000000000000032b       0xc8 shapes.o
+ .debug_abbrev  0x00000000000003f3       0x5d display.o
+ .debug_abbrev  0x0000000000000450       0xe9 matrix.o
+ .debug_abbrev  0x0000000000000539      0x111 movement.o
+ .debug_abbrev  0x000000000000064a       0xe7 physics.o
+
+.debug_aranges  0x0000000000000000      0x140
+ .debug_aranges
+                0x0000000000000000       0x20 crt0.o
+ .debug_aranges
+                0x0000000000000020       0x20 main.o
+ .debug_aranges
+                0x0000000000000040       0x20 lib.o
+ .debug_aranges
+                0x0000000000000060       0x20 showpic.o
+ .debug_aranges
+                0x0000000000000080       0x20 random.o
+ .debug_aranges
+                0x00000000000000a0       0x20 shapes.o
+ .debug_aranges
+                0x00000000000000c0       0x20 display.o
+ .debug_aranges
+                0x00000000000000e0       0x20 matrix.o
+ .debug_aranges
+                0x0000000000000100       0x20 movement.o
+ .debug_aranges
+                0x0000000000000120       0x20 physics.o
+
+.debug_str      0x0000000000000000      0x290
+ .debug_str     0x0000000000000000       0x6f crt0.o
+ .debug_str     0x000000000000006f       0xe5 main.o
+                                        0x13f (size before relaxing)
+ .debug_str     0x0000000000000154       0x5b lib.o
+                                         0xf6 (size before relaxing)
+ .debug_str     0x00000000000001af        0xa showpic.o
+                                         0x72 (size before relaxing)
+ .debug_str     0x00000000000001b9        0x9 random.o
+                                         0x71 (size before relaxing)
+ .debug_str     0x00000000000001c2       0x14 shapes.o
+                                         0xeb (size before relaxing)
+ .debug_str     0x00000000000001d6       0x12 display.o
+                                         0xa5 (size before relaxing)
+ .debug_str     0x00000000000001e8       0x57 matrix.o
+                                         0xf9 (size before relaxing)
+ .debug_str     0x000000000000023f       0x38 movement.o
+                                        0x134 (size before relaxing)
+ .debug_str     0x0000000000000277       0x19 physics.o
+                                        0x11d (size before relaxing)
+
+.debug_loc      0x0000000000000000      0x514
+ .debug_loc     0x0000000000000000       0xb4 main.o
+ .debug_loc     0x00000000000000b4      0x1eb lib.o
+ .debug_loc     0x000000000000029f       0x4e shapes.o
+ .debug_loc     0x00000000000002ed       0x21 display.o
+ .debug_loc     0x000000000000030e       0xf2 matrix.o
+ .debug_loc     0x0000000000000400       0x6d movement.o
+ .debug_loc     0x000000000000046d       0xa7 physics.o
+
+.debug_ranges   0x0000000000000000      0x138
+ .debug_ranges  0x0000000000000000       0x30 main.o
+ .debug_ranges  0x0000000000000030       0x60 lib.o
+ .debug_ranges  0x0000000000000090       0x48 matrix.o
+ .debug_ranges  0x00000000000000d8       0x18 movement.o
+ .debug_ranges  0x00000000000000f0       0x48 physics.o
+
+.debug_frame    0x0000000000000000      0x294
+ .debug_frame   0x0000000000000000       0x50 main.o
+ .debug_frame   0x0000000000000050       0xa8 lib.o
+ .debug_frame   0x00000000000000f8       0x30 shapes.o
+ .debug_frame   0x0000000000000128       0x20 display.o
+ .debug_frame   0x0000000000000148       0x60 matrix.o
+ .debug_frame   0x00000000000001a8       0x90 movement.o
+ .debug_frame   0x0000000000000238       0x5c physics.o
