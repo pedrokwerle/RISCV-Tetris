@@ -27,7 +27,7 @@ int main(){
     for (int j = 0; j < HEIGHT; j++){
         paint_row(play_area[j], j);
     }
-    while(1){
+    while(!end_game){
         int colision = 0;
         while (colision < 1){
             if(pollLeftFlag()){
@@ -49,13 +49,13 @@ int main(){
             colision = colision_check();
         }
         consolidate_rows();
-        points = clear_rows();
-		printint(points);
-		println();
+        points += clear_rows();
 
         for (int j = 0; j < HEIGHT-1; j++){
             paint_row(play_area[j], j);
         }
         tetris_god_senpai();
     }
+    printstr("Your score is: ");
+    printint(points);
 }

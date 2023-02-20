@@ -1,6 +1,6 @@
 #pragma once
 
-#define TETRIS (19)
+#define TETRIS (28)
 #define SQUARESIZE (4)
 #define HEIGHT (25)
 
@@ -11,7 +11,7 @@ extern int play_area_redacted[HEIGHT];
 extern int piece_row;
 extern int piece_col;
 extern int current_piecem[SQUARESIZE];
-extern int piece_index;
+extern volatile int piece_index;
 void change_piece();
 void apply_mask();
 void reset_mask();

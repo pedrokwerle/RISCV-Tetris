@@ -1,4 +1,5 @@
 #pragma once
 
-extern int random();
-extern void initseed(int seed);
+// to change the seed go into random.s
+
+volatile extern int random();

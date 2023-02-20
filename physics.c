@@ -2,6 +2,8 @@
 #include "movement.h"
 #include "shapes.h"
 #include "matrix.h"
+#include "random.h"
+#include "lib.h"
 
 // checks for colision between the falling piece and the blocks in the playing area
 int colision_check(){
@@ -54,11 +56,15 @@ int clear_rows(){
 void tetris_god_senpai(){
     piece_row = 4;
     piece_col = 5;
-    piece_index = (piece_index + 7)%18;
+    piece_index = (random())%TETRIS-1;
     change_piece();
     reset_mask();
     apply_mask();
-}						 
+    if(colision_check_wall()){
+        end_game = 1;
+    }
+}
+int end_game = 0;
 
 int result[SQUARESIZE] =
 {

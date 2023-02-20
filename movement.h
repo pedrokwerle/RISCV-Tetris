@@ -1,5 +1,5 @@
 #pragma once
-#define TETRIS (19)
+#define TETRIS (28)
 
 void mv_piece_l();
 void mv_piece_r();

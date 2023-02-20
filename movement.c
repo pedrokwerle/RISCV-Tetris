@@ -19,7 +19,7 @@ void mv_piece_l(){
 	}
 }
 void mv_piece_r(){
-	printint(1);
+	(1);
     for (int i = piece_row; i < piece_row + SQUARESIZE; i++){
         piece_mask[i] = piece_mask[i] >> 1;
     }
@@ -63,5 +63,5 @@ void r_piece_cw(){
 
 int rotational_vector[TETRIS] =
 {
-    1,0,3,4,5,2,7,8,9,6,10,12,11,14,13,16,17,18,15,
+    1,0,1,0,5,6,7,4,9,10,11,8,12,12,12,12,17,16,17,16,21,20,21,20,25,26,27,24,
 };

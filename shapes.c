@@ -1,5 +1,7 @@
 #include "shapes.h"
 #include "matrix.h"
+#include "random.h"
+#include "lib.h"
 
 // copy the contents of the current_piecem to the position in the mask indicated by piece_row and piece_col
 void apply_mask(){
@@ -16,9 +18,10 @@ void reset_mask(){
 }
 
 void initialize(){
-    piece_index = 0;
-    piece_row = 13;
-    piece_col = 6;
+    piece_index = (random())%TETRIS-1; // modulo TETRIS-1 so that the number is never bigger than the last piece index
+    (piece_index);
+    piece_row = 4;
+    piece_col = 5;
     // set the play area to its initial state
     play_area[0] = 0b111111111111;
     play_area[1] = 0b111111111111;
@@ -27,10 +30,6 @@ void initialize(){
     for (int i = 4; i < HEIGHT-1; i++){
         play_area[i] = 0b100000000001;
     }
-	play_area[HEIGHT-5] = 0b111111110111;
-    play_area[HEIGHT-4] = 0b111111110111;
-    play_area[HEIGHT-3] = 0b111111110111;
-    play_area[HEIGHT-2] = 0b111111110111;
     play_area[HEIGHT-1] = 0b111111111111;
     for (int j = 0; j < SQUARESIZE; j++){
         current_piecem[j] = pieces[piece_index][j];
@@ -44,14 +43,26 @@ void change_piece(){
     }
 }
 
-int piece_index = 0;
+volatile int piece_index = 0;
 int piece_row = 0;
 int piece_col = 0;
 int current_piecem[SQUARESIZE];
 
 int pieces[TETRIS][SQUARESIZE]=
 {
-    // line variations 0-1
+    // line variations
+    {
+        0b0010,
+        0b0010,
+        0b0010,
+        0b0010,
+    },
+    {
+        0b0000,
+        0b1111,
+        0b0000,
+        0b0000,
+    },
     {
         0b0010,
         0b0010,
@@ -65,7 +76,7 @@ int pieces[TETRIS][SQUARESIZE]=
         0b0000,
     },
 
-    // L variations 2-5
+    // L variations
     {
         0b0000,
         0b0100,
@@ -90,7 +101,7 @@ int pieces[TETRIS][SQUARESIZE]=
         0b0110,
         0b0000
     },
-    // reverse L variations 6-9
+    // reverse L variations
     {
         0b0000,
         0b0010,
@@ -115,7 +126,25 @@ int pieces[TETRIS][SQUARESIZE]=
         0b0010,
         0b0000,
     },
-    // square variations 10
+    // square variations
+    {
+        0b0000,
+        0b0110,
+        0b0110,
+        0b0000,
+    },
+    {
+        0b0000,
+        0b0110,
+        0b0110,
+        0b0000,
+    },
+    {
+        0b0000,
+        0b0110,
+        0b0110,
+        0b0000,
+    },
     {
         0b0000,
         0b0110,
@@ -123,7 +152,7 @@ int pieces[TETRIS][SQUARESIZE]=
         0b0000,
     },
 
-    // S variations 11-12
+    // S variations
     {
         0b0000,
         0b0110,
@@ -136,7 +165,19 @@ int pieces[TETRIS][SQUARESIZE]=
         0b0010,
         0b0000,
     },
-    // Z variations 13-14
+    {
+        0b0000,
+        0b0110,
+        0b1100,
+        0b0000,
+    },
+    {
+        0b0100,
+        0b0110,
+        0b0010,
+        0b0000,
+    },
+    // Z variations
 
     {
         0b0000,
@@ -150,8 +191,20 @@ int pieces[TETRIS][SQUARESIZE]=
         0b0100,
         0b0000,
     },
+    {
+        0b0000,
+        0b0110,
+        0b0011,
+        0b0000,
+    },
+    {
+        0b0010,
+        0b0110,
+        0b0100,
+        0b0000,
+    },
 
-    // cross variations 15-18
+    // cross variations
     {
         0b0100,
         0b1110,
